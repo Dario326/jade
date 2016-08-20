@@ -1,0 +1,45 @@
+doctype html
+html
+    head
+        title Jade Fundamentals
+    body
+        - var myTitle = 'Hey Everyone!'
+        - var mySkills = ['PHP', 'MySQL', 'SASS']
+        if myTitle
+            h1 #{myTitle}
+            
+            ul
+                each val in mySkills
+                    li= val
+                    
+            p(class='paragraph', id='myPID') this is a new paragraph.
+        else
+            h1 Awwh, we have no title!
+        mixin paragraph
+            p hello
+            
+        mixin paragraph2(myContent, id) 
+        
+            p(id=id)= myContent
+            
+        +paragraph2('hey, how is it going?', 'myParaID')
+        
+        div( style={ color: 'blue', background: 'black' })
+        
+        form(action='', method='POST')
+            
+            mixin formText(textID, textValue)
+            
+                label(for='textID')= textValue
+                input(type='text', name='textID', id= textID)
+                
+            +formText('firstName', 'First Name:')
+            +formText('lastName', 'Last Name:')
+            
+            
+            
+            label(for='myList') Occupation:
+            select(id='myList', name='myList')
+                option(value='Designer') Designer
+                option(value='Coder') Coder
+            input(type='button', value='submit')
